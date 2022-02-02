@@ -2,8 +2,7 @@
   "extends": [
     "eslint:recommended",
     "airbnb",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "plugins": [
     "react-hooks"
@@ -16,6 +15,7 @@
     "no-plusplus": [
       0
     ],
+    "react/function-component-definition": "off",
     "react/jsx-filename-extension": [
       1,
       {
