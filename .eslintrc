@@ -41,6 +41,12 @@
       0
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "arrow-body-style": [
+      0
+    ],
+    "prefer-arrow-callback": [
+      0
+    ]
   }
 }
