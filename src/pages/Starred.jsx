@@ -1,11 +1,9 @@
 import React, { useEffect, useReducer } from 'react';
 import MainPageLayout from '../components/MainPageLayout';
 import ShowGrid from '../components/show/ShowGrid';
-// import ShowGrid from '../components/show/ShowGrid';
 import { apiGet } from '../misc/config';
 import { useShows } from '../misc/custom-hooks';
 const reducer = (prevState, action) => {
-  console.log(action);
   switch (action.type) {
     case 'FETCH_SUCCESS':
       return { isLoading: false, error: null, shows: action.show };
@@ -28,7 +26,6 @@ const Starred = () => {
     reducer,
     initialState
   );
-  // console.log(state);
   useEffect(() => {
     if (starred && starred.length > 0) {
       const promises = starred.map(showId => apiGet(`/shows/${showId}`));
