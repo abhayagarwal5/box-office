@@ -1,51 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useReducer } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Cast from '../components/show/Cast';
 import Details from '../components/show/Details';
 import Seasons from '../components/show/Seasons';
 import { InfoBlock, ShowPageWrapper } from '../components/show/Show.styled';
 import ShowMainData from '../components/show/ShowMainData';
-import { apiGet } from '../misc/config';
-const reducer = (prevState, action) => {
-  switch (action.type) {
-    case 'FETCH_SUCCESS':
-      return { isLoading: false, error: null, show: action.show };
-    case 'FETCH_FAILURE':
-      return { ...prevState, isLoading: false, error: action.error };
-    default:
-      return prevState;
-  }
-};
-const initialState = {
-  isLoading: true,
-  show: null,
-  error: null,
-};
+import { useShow } from '../misc/custom-hooks';
+
 const Show = () => {
   const { id } = useParams();
-  const [{ show, error, isLoading }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
-
-  useEffect(() => {
-    let isMount = true;
-    apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
-      .then(result => {
-        if (isMount) {
-          dispatch({ type: 'FETCH_SUCCESS', show: result });
-        }
-      })
-      .catch(err => {
-        if (isMount) {
-          dispatch({ type: 'FETCH_FAILURE', error: err.message });
-        }
-      });
-    return () => {
-      isMount = false;
-    };
-  }, [id]);
+  const { show, error, isLoading } = useShow(id);
 
   if (isLoading) {
     return <div>Data is being loaded</div>;
