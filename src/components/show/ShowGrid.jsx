@@ -19,7 +19,7 @@ const ShowGrid = ({ data }) => {
   return (
     <FlexGrid>
       {data.map(({ show }) => {
-        const isStarred = starredShows.includes(show.id);
+        // const isStarred = starredShows.includes(show.id);
         return (
           <ShowCard
             key={show.id}
@@ -27,8 +27,8 @@ const ShowGrid = ({ data }) => {
             name={show.name}
             image={show.image ? show.image.medium : IMAGE_NOT_FOUND}
             summary={show.summary}
-            onStarredClick={onStarClick}
-            isStarred={isStarred}
+            onStarClick={onStarClick}
+            isStarred={starredShows.includes(show.id)}
           />
         );
       })}
